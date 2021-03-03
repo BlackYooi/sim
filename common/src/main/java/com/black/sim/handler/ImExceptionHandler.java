@@ -22,7 +22,7 @@ public class ImExceptionHandler extends AbstractDefaultMsgHandler {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         ImSession session = ctx.channel().attr(ImSession.SESSION_KEY).get();
-        if (cause instanceof IOException) {
+        if (session != null && cause instanceof IOException) {
             session.close();
         }
     }
